@@ -11,6 +11,8 @@ export default function InputForm({ onAnalyze, onBack }) {
     e.preventDefault();
     const cleanName1 = name1.trim();
     const cleanName2 = name2.trim();
+    const normalizedName1 = cleanName1.toLowerCase().replace(/\s+/g, '');
+    const normalizedName2 = cleanName2.toLowerCase().replace(/\s+/g, '');
 
     if (!cleanName1 || !cleanName2) {
       setError('Please enter both names!');
@@ -19,7 +21,7 @@ export default function InputForm({ onAnalyze, onBack }) {
       return;
     }
 
-    if (cleanName1.toLowerCase() === cleanName2.toLowerCase()) {
+    if (normalizedName1 === normalizedName2) {
       setError("Names can't be the same! 😅");
       setShake(true);
       setTimeout(() => setShake(false), 500);
